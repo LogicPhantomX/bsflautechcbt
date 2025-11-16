@@ -1,0 +1,29 @@
+[
+  {
+    "id": "course-e16bb30b-2c05-4f65-b83e-052907cf2ff5",
+    "name": "PHY101_test001",
+    "isOpen": false,
+    "durationMinutes": 25,
+    "numQuestions": 20,
+    "openAt": null,
+    "closeAt": null
+  },
+  {
+    "id": "course-011fcbcb-f38d-434e-ab2e-69c82190ba39",
+    "name": "MTH 101",
+    "isOpen": false,
+    "durationMinutes": 2,
+    "numQuestions": 2,
+    "openAt": null,
+    "closeAt": null
+  },
+  {
+    "id": "course-b74eb3b9-ad1a-4ae4-8f8e-5bcf95959ca6",
+    "name": "ACC101_test001",
+    "isOpen": true,
+    "durationMinutes": 25,
+    "numQuestions": 30,
+    "openAt": null,
+    "closeAt": null
+  }
+]

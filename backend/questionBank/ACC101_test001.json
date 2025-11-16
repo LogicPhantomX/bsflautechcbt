@@ -1,0 +1,362 @@
+[
+  {
+    "id": "1e8af31a-746b-4d53-9d96-a1b8d3b2fa6e",
+    "topic": "General",
+    "question": "According to the text, which accounting method is described as a \"traditional method of recording transactions using physical journal and ledgers\"?",
+    "options": [
+      "Spreadsheet Accounting",
+      "Double Entry Bookkeeping System",
+      "Manual (Ledger) Method",
+      "Accounting Software Method"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "1e93eb05-b016-493c-9e40-8dbc87b798d5",
+    "topic": "General",
+    "question": "Which of the following is listed as an advantage of a Manual System?",
+    "options": [
+      "It is highly prone to mistakes and errors.",
+      "It is cheaper to install than a computerized system.",
+      "It takes a longer time to complete tasks.",
+      "Auditing the system is easy and straightforward."
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "c9a20a66-9132-4a0f-b967-b93b1a408b68",
+    "topic": "General",
+    "question": "Which of the following is listed as a disadvantage (demerit) of a Computerized Accounting System?",
+    "options": [
+      "It helps avoid the duplication of records.",
+      "It is prone to risks like computer viruses and hard disk crashes.",
+      "It generates different reports for managers.",
+      "Entry of data is faster than in a manual system."
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "34503dde-0977-455e-bfe9-a42b756e405c",
+    "topic": "General",
+    "question": "The text defines a \"Chart of Account\" as:",
+    "options": [
+      "A method of recording transactions using Microsoft Excel or Google Sheets.",
+      "A traditional ledger book for manual accounting.",
+      "A computerized method that automates bookkeeping, like QuickBooks or Sage.",
+      "A set of numbers and codes that define and differentiate each account."
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "d518a38a-4a91-4c66-a792-915e4e2f74c7",
+    "topic": "General",
+    "question": "Which accounting system requires a \"double entry for each financial transaction\" by recording a corresponding credit for each debit?",
+    "options": [
+      "Single Entry Bookkeeping System",
+      "Manual (Ledger) System",
+      "Double Entry Bookkeeping System",
+      "Spreadsheet Accounting System"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "bb25c754-bb3f-40e6-b98f-c7432b64d2d4",
+    "topic": "General",
+    "question": "Which system is described as a \"basic system\" where a company might \"record daily receipts or generate a daily or weekly report of cash flow\"?",
+    "options": [
+      "Double Entry Bookkeeping System",
+      "Single Entry Bookkeeping System",
+      "Manual (Ledger) Method",
+      "Accounting Software System"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "4f994e83-162c-4b0e-90a5-92c5919890d3",
+    "topic": "General",
+    "question": "According to the text, a major disadvantage of the Manual System regarding security is that it is:",
+    "options": [
+      "Prone to computer viruses and hacking.",
+      "Prone to destruction by flood and fire without any back-up.",
+      "More secure because it's not connected to the internet.",
+      "Easily duplicated, leading to data theft."
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "548acc62-2e1c-4932-b51b-6af8f1197a65",
+    "topic": "General",
+    "question": "Microsoft Excel and Google Sheets are given as examples of what method of recording transactions?",
+    "options": [
+      "Accounting Software",
+      "Manual (Ledger) Method",
+      "Mechanical Accounting System",
+      "Spreadsheet Accounting"
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "7f743454-d2c7-4e92-af3b-b5172959c558",
+    "topic": "General",
+    "question": "Which of the following is not listed as an advantage of a computerized accounting system?",
+    "options": [
+      "It helps to communicate with customers and suppliers.",
+      "Quick and fast decisions can be made by managers.",
+      "It requires less training for personnel compared to a manual system.",
+      "Accounting records are secure and safe because they can be backed up."
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "0352f7fa-109c-4792-9fb8-0781830971aa",
+    "topic": "General",
+    "question": "Things you wish you could have, such as a jeep or a job in NNPC, are defined as:",
+    "options": [
+      "Needs",
+      "Wants",
+      "Services",
+      "Goods"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "ae3f7398-4900-428e-8a4f-827e91aae6ac",
+    "topic": "General",
+    "question": "Necessities of life, such as food, shelter, and clothing, are defined as:",
+    "options": [
+      "Needs",
+      "Wants",
+      "Resources",
+      "Luxuries"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "f4707b7f-bbbe-4c2e-a036-662727e4b548",
+    "topic": "General",
+    "question": "When you give up one item (like seeing a friend) to buy another (like a recharge card), the cost of the choice you gave up is called:",
+    "options": [
+      "Monetary Cost",
+      "Opportunity Cost",
+      "Business Cost",
+      "Value Cost"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "1148a50a-e9e9-4d26-9435-cc68c295ddda",
+    "topic": "General",
+    "question": "The business activity that involves advertising, distributing, and selling products is:",
+    "options": [
+      "Organizing",
+      "Manage",
+      "Production",
+      "Marketing"
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "78f80006-3d7d-4b9b-91f5-f9928f682320",
+    "topic": "General",
+    "question": "The primary motive for every business organization is stated as:",
+    "options": [
+      "To provide services",
+      "To make a profit",
+      "To exchange goods",
+      "To satisfy consumers"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "8dfffa71-d664-45d9-8fc5-d43ce420b29c",
+    "topic": "General",
+    "question": "Which objective of business states that a business must “not only survive, but it must have as goal to continue to be the biggest”?",
+    "options": [
+      "Survival",
+      "Profit",
+      "Market Share",
+      "Growth"
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "095b07fb-d7dc-4e9d-a53f-676061c5e40b",
+    "topic": "General",
+    "question": "The characteristic of business that involves “every business undertaking must take risk” is:",
+    "options": [
+      "Continuity and regularity",
+      "Uncertainty and risk bearing",
+      "Profit motive",
+      "Dealing in goods"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "d616642d-9e6b-48be-abe2-d6d1a77989d0",
+    "topic": "General",
+    "question": "In your role as a consumer, you are always referred to as a:",
+    "options": [
+      "King",
+      "Citizen",
+      "Wage Earner",
+      "Boss"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "cb0ad5ba-c886-455c-8781-3f5ad9460640",
+    "topic": "General",
+    "question": "The “basic thing” the government gains from business is:",
+    "options": [
+      "Employment",
+      "Green products",
+      "Tax",
+      "Health insurance"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "3d2583b9-8d23-46c3-a46a-4faa8019f4ba",
+    "topic": "General",
+    "question": "Management is the art of getting things done through people or others. This definition was proposed by",
+    "options": [
+      "Lawrence Appley",
+      "Mary Parker Follet",
+      "George R. Terry",
+      "Henry Fayol"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "8c8eb8da-fc50-43bd-9e0e-7661f9255086",
+    "topic": "General",
+    "question": "___________ further remarks that to manage is to forecast and plan, to organise, to command, to coordinate, and to control.",
+    "options": [
+      "Henry Fayol",
+      "Peter Drucker",
+      "Koontz",
+      "Ordway Tead"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "32575bd4-ca42-4ede-b531-96f0031eeb2c",
+    "topic": "General",
+    "question": "George R. Terry defines management as a process consisting of planning,  organising,  motivating and controlling performed to decide and execute objectives through  the use of people  and resources.",
+    "options": [
+      "True",
+      "False",
+      "I don't know",
+      "None of the above"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "913b0834-d078-4dec-af34-d8bc2a36f811",
+    "topic": "General",
+    "question": "Management is view as the following EXCEPT",
+    "options": [
+      "As a Process",
+      "As a Discipline",
+      "As a Human Activity",
+      "As a Topic"
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "37e1b2c3-12c7-4dac-b0d8-d6ac0c412df0",
+    "topic": "General",
+    "question": "The following are the characteristics of management except",
+    "options": [
+      "Management is a continuous  process",
+      "Management is an art as well as science",
+      "Management is a factor of production",
+      "Management encourage terrorism"
+    ],
+    "answerIndex": 4
+  },
+  {
+    "id": "22f73879-9403-4464-8948-f5314475880d",
+    "topic": "General",
+    "question": "Financial Management includes the following except",
+    "options": [
+      "Forecasting",
+      "Placing order",
+      "Budgetary Control",
+      "Management Accounting"
+    ],
+    "answerIndex": 2
+  },
+  {
+    "id": "b56a25ac-e7bf-4b67-a4be-94392777dfc1",
+    "topic": "General",
+    "question": "Abacus was invented by",
+    "options": [
+      "Charles Babbage",
+      "Atanasoff Berry Computer",
+      "ENIAC",
+      "IBM"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "db1eda44-d7c8-496e-9bfd-225069f0bd35",
+    "topic": "General",
+    "question": "The first electronic computing device is",
+    "options": [
+      "Abacus",
+      "Personal Computer",
+      "Atanasoff Berry Computer",
+      "Smartphone"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "b24b81f4-2749-40dd-93b2-ddec694248cf",
+    "topic": "General",
+    "question": "GUI is an acronym for",
+    "options": [
+      "Graphical User Interfaces",
+      "Graphics User Interfaces",
+      "Graph User Interfaces",
+      "Graphical Universal Interfaces"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "78e00a9d-7367-457e-8609-699e60e9fca7",
+    "topic": "General",
+    "question": "The Acceptable definition of Economics was given by",
+    "options": [
+      "Adam Smith",
+      "John Styat Mill",
+      "Professor Lionel Robbins",
+      "Jacob Viner"
+    ],
+    "answerIndex": 3
+  },
+  {
+    "id": "6dd711eb-4038-46f2-8c4b-082d451ded00",
+    "topic": "General",
+    "question": "ENIAC is an acronym for",
+    "options": [
+      "Electronic Numerical Integrator and Computer",
+      "Electrical Number Integrator and Computer",
+      "Electronic Number Integrator and Computer",
+      "Electric Numerical Integrator and Computer"
+    ],
+    "answerIndex": 1
+  },
+  {
+    "id": "eb78db50-1f31-4dcf-b9b4-667cf2b63db7",
+    "topic": "General",
+    "question": "PCs was invented in which century?",
+    "options": [
+      "Late 20th Century",
+      "Early 20th Century",
+      "Mid 20th Century",
+      "21st Century"
+    ],
+    "answerIndex": 1
+  }
+]
