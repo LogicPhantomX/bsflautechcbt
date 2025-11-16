@@ -1,0 +1,28 @@
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+body{background:#f9fdf9;color:#333;}
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#006400;color:#fff;padding:1rem 2rem}
+.navbar .logo{font-size:1.5rem;font-weight:bold}
+.navbar ul{list-style:none;display:flex;gap:1.5rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{color:#cceccc;border-bottom:2px solid #fff;padding-bottom:2px}
+.dashboard-container{display:flex;width:100%;height:calc(100vh - 70px)}
+.dashboard-content{flex:1;padding:3rem 3rem 3rem 17rem;display:flex;flex-direction:column;justify-content:center}
+.dashboard-content h2{color:#006400;margin-bottom:1rem; margin-top: -20%;}
+.dashboard-content p{
+  padding-bottom: 10px;
+}
+.course-list{display:flex;gap:1rem;flex-wrap:wrap}
+.course-btn{padding:.8rem 1.5rem;background:#006400;color:#fff;border:none;border-radius:6px;font-size:1rem;cursor:pointer;transition:.3s}
+.course-btn:hover{background:#008000}
+.dashboard-image{height: 100%; flex:1;background:url('images/1000296770-removebg-preview.png') center/cover no-repeat}
+
+@media(max-width:858px){.dashboard-container{flex-direction:column}.dashboard-image{display:none}.dashboard-content{padding: 2rem; margin-top: -10%;}}
+@media(max-width:550px){.dashboard-container{flex-direction:column}.dashboard-image{display:none}.dashboard-content{padding: 2rem; margin-top: -20%;}
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#006400;color:#fff;padding:1rem 1.5rem}
+.navbar .logo{font-size:1rem;font-weight:bold}
+.navbar ul{font-size: 0.9rem; list-style:none;display:flex;gap:1rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{color:#cceccc;border-bottom:2px solid #fff;padding-bottom:2px}
+}
+

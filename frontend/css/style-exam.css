@@ -1,0 +1,30 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+body{background:#f9fdf9;color:#333; }
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#008000;color:#fff;padding:1rem 2rem}
+.navbar .logo{font-size:1.5rem;font-weight:bold}
+.navbar ul{list-style:none;display:flex;gap:1.5rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{border-bottom:2px solid #fff;padding-bottom:2px}
+.exam-container{display:flex;width:100%;height:calc(100vh - 70px)}
+.exam-content{flex:1;padding:3rem;overflow-y:auto}
+.exam-content h2{color:#004d00;margin-bottom:.5rem}
+.exam-form{
+  padding-left: 20px;
+  font-size: 20px;
+}
+.timer{background:#e6ffe6;padding:.5rem 1rem;border-left:4px solid #008000;margin-bottom:1.2rem;font-weight:bold}
+.exam-form{display:flex;flex-direction:column;gap:1.2rem}
+.question p{margin-bottom:.5rem;font-weight:500}
+.question label{display:block;padding:.3rem 0;cursor:pointer}
+.submit-btn{background:#008000;color:#fff;border:none;padding:1rem;font-size:1rem;border-radius:6px;cursor:pointer;transition:.3s;margin-top:1rem}
+.submit-btn:hover{background:#006600}
+.exam-image{flex:1;background:url('images/5250ab493ee9553d8033352359adc3f1.jpg') center/cover no-repeat}
+@media(max-width:768px){.exam-container{flex-direction:column}.exam-image{display:none}}
+@media(max-width:558px){.exam-container{flex-direction:column}.exam-image{display:none}
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#006400;color:#fff;padding:1rem 1.5rem}
+.navbar .logo{font-size:1rem;font-weight:bold}
+.navbar ul{font-size: 0.9rem; list-style:none;display:flex;gap:1rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{color:#cceccc;border-bottom:2px solid #fff;padding-bottom:2px}
+}
+

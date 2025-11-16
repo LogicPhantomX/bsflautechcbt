@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BSF LAUTECH CBT (A computer based test/exam platform created for the students)">
+  <meta name="keywords" content="BSF, BSF LAUTECH, bsf lautech, BSF LAUTECH CBT, bsf lautech CBT, BSF lautech CBT, admin, admin results">
+  <meta name="author" content="LogicPhantomX">
+  <title>All Results | BSF LAUTECH CBT (Admin)</title>
+  <link rel="stylesheet" href="css/style-results.css">
+  <link rel="icon" type="image/png" href="1000297344-removebg-preview.png">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">BSF LAUTECH Admin</div>
+    <ul>
+      <li><a href="adminDashboard.html">Dashboard</a></li>
+      <li><a href="results-admin.html" class="active">Results</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="admin-results">
+    <h2>🗂 All Students Results</h2>
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Matric</th>
+          <th>Course</th>
+          <th>Score</th>
+          <th>%</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </main>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!token || !user || user.role !== 'admin') location.href = 'index.html';
+    document.getElementById('logout').onclick = () => { localStorage.clear(); location.href='index.html'; };
+
+    (async function load() {
+      const res = await fetch('/api/admin/results', { headers: { Authorization:`Bearer ${token}` }});
+      const data = await res.json();
+      const body = document.querySelector('#tbl tbody');
+      body.innerHTML = '';
+      data.sort((a,b)=> new Date(b.date) - new Date(a.date));
+      data.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.name}</td>
+          <td>${r.matric}</td>
+          <td>${r.course}</td>
+          <td>${r.score}/${r.total}</td>
+          <td>${r.percentage.toFixed(1)}</td>
+          <td>${new Date(r.date).toLocaleString()}</td>
+        `;
+        body.appendChild(tr);
+      });
+    })();
+  </script>
+</body>
+</html>
+

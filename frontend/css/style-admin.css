@@ -1,0 +1,35 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+body{background:#f9fdf9;overflow: hidden;color:#333}
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#004d00;color:#fff;padding:1rem 2rem}
+.navbar .logo{font-size:1.5rem;font-weight:bold}
+.navbar ul{list-style:none;display:flex;gap:1.5rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{color:#cceccc;border-bottom:2px solid #fff;padding-bottom:2px}
+.admin-container{display:flex;width:100%;height:calc(100vh - 70px)}
+.admin-content{flex:1;padding:2rem;overflow:auto}
+.admin-image{ flex:1;background:url('images/68fcb77e9f7f81641fef8ab238009c81.jpg') center/cover no-repeat;}
+.card{background:#fff;border:1px solid #e4e4e4;border-left:4px solid #004d00;border-radius:8px;padding:1rem;margin-bottom:1rem;box-shadow:0 4px 10px rgba(0,0,0,.05)}
+.card h3{color:#004d00;margin-bottom:.6rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:.5rem 0}
+input{padding:.7rem;border:1px solid #ccc;border-radius:6px;flex:1;min-width:180px}
+#question{padding:.7rem;border:1px solid #ccc;border-radius:6px;flex:1;min-width:565px}
+button{padding:.7rem 1rem;background:#004d00;color:#fff;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#007000}
+button.danger{background:#b30000}
+.course-row,.q-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;padding:.6rem 0}
+.q-text{max-width:70%}
+.q-actions button{margin-left:.5rem}
+@media(max-width:768px){
+  #question{padding:.7rem;border:1px solid #ccc;border-radius:6px;flex:1;min-width:400px}
+  .admin-container{flex-direction:column}.admin-image{display:none}}
+@media(max-width:540px){
+  #question{padding:.7rem;border:1px solid #ccc;border-radius:6px;flex:1;min-width:300px}
+  .admin-container{flex-direction:column}.admin-image{display:none}
+.navbar{display:flex;justify-content:space-between;align-items:center;background:#006400;color:#fff;padding:1rem 1.5rem}
+.navbar .logo{font-size:1rem;font-weight:bold}
+.navbar ul{font-size: 0.9rem; list-style:none;display:flex;gap:1rem}
+.navbar a{color:#fff;text-decoration:none;font-weight:500}
+.navbar a.active,.navbar a:hover{color:#cceccc;border-bottom:2px solid #fff;padding-bottom:2px}
+}
+
+

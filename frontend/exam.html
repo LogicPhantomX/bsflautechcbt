@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BSF LAUTECH CBT (A computer based test/exam platform created for the students)">
+  <meta name="keywords" content="BSF, BSF LAUTECH, bsf lautech, BSF LAUTECH CBT, bsf lautech CBT, BSF lautech CBT, BSF exam">
+  <meta name="author" content="LogicPhantomX">
+  <title>Exam | BSF LAUTECH CBT</title>
+  <link rel="stylesheet" href="css/style-exam.css">
+  <link rel="icon" type="image/png" href="1000297344-removebg-preview.png">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">BSF LAUTECH CBT</div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="exam.html" class="active">Exam</a></li>
+      <li><a href="results.html">Results</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="exam-container">
+    <div class="exam-content">
+      <h2 id="courseTitle">Exam</h2>
+      <div class="timer">⏱ Time Left: <span id="timeLeft">--:--</span></div>
+      <form id="examForm" class="exam-form"></form>
+      <button id="submitBtn" class="submit-btn">Submit Exam</button>
+    </div>
+    <div class="exam-image"></div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!token || !user || user.role !== 'student') location.href = 'login.html';
+    document.getElementById('logout').onclick = () => { localStorage.clear(); location.href='login.html'; };
+
+    const params = new URLSearchParams(location.search);
+    const course = params.get('course');
+    if (!course) location.href = 'dashboard.html';
+    document.getElementById('courseTitle').textContent = `${course} Exam`;
+
+    let durationMinutes = 0;
+    let endTime = 0;
+    let timerInterval = null;
+    let questions = [];
+
+    function renderQuestions() {
+      const form = document.getElementById('examForm');
+      form.innerHTML = '';
+      questions.forEach((q, i) => {
+        const block = document.createElement('div');
+        block.className = 'question';
+        block.innerHTML = `
+          <p><strong>${i+1}.</strong> ${q.question}</p>
+          ${q.options.map((opt, idx) =>`
+            <label><input type="radio" name="${q.id}" value="${idx+0}"/> ${opt}</label>
+          `).join('')}
+        `;
+        form.appendChild(block);
+      });
+    }
+
+    function tick() {
+      const diff = endTime - Date.now();
+      if (diff <= 0) {
+        document.getElementById('timeLeft').textContent = '00:00';
+        clearInterval(timerInterval);
+        autoSubmit();
+        return;
+      }
+      const m = Math.floor(diff / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      document.getElementById('timeLeft').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    async function start() {
+      const res = await fetch(`/api/exam/start?course=${encodeURIComponent(course)}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) return alert(data.message || 'Cannot start exam');
+
+      questions = data.questions;
+      durationMinutes = data.durationMinutes || 60;
+      endTime = Date.now() + durationMinutes * 60000;
+      renderQuestions();
+      tick();
+      timerInterval = setInterval(tick, 1000);
+    }
+
+    function collectAnswers() {
+   return questions.map(q => {
+  const chosen = document.querySelector(`input[name="${q.id}"]:checked`);
+  return { id: q.id, choiceIndex: chosen ? Number(chosen.value) : -1 };
+});
+
+}
+
+    async function submit(finalize = true) {
+      const answers = collectAnswers();
+      const res = await fetch('/api/exam/submit', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', Authorization:`Bearer ${token}` },
+        body: JSON.stringify({ course, answers })
+      });
+      const data = await res.json();
+      if (!res.ok) return alert(data.message || 'Submit failed');
+      alert(`Submitted. Score: ${data.score}/${data.total}`);
+      location.href = 'results.html';
+    }
+
+    function autoSubmit() {
+      alert('Time up! Auto-submitting your exam.');
+      submit(true);
+    }
+
+    document.getElementById('submitBtn').onclick = async () => {
+      if (confirm('Submit your exam now?')) {
+        clearInterval(timerInterval);
+        submit(true);
+      }
+    };
+
+    start();
+  </script>
+</body>
+</html>

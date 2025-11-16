@@ -1,0 +1,83 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif
+}
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#f4fdf6;
+  overflow: hidden;
+}
+.login-container{
+  display:flex;
+  width:90%;
+  max-width:
+  1000px;
+  height:600px;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.1)
+}
+.login-form{
+  flex:1;
+  padding:3rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.login-form h2{
+  color:#006400;
+  margin-bottom:1.5rem
+}
+.login-form input{
+  margin-bottom:1rem;
+  padding:.8rem;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:1rem
+}
+.login-form button{
+  padding:.8rem;
+  background:#006400;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  transition:.3s
+}
+.login-form button:hover{
+  background:#008000
+}
+.login-form p{
+  margin-top:1rem
+}
+.login-form a{
+  color:#006400;
+  text-decoration:none;
+  font-weight:600
+}
+.login-image{
+  flex:1;
+  background:url('images/4ae1fc1554465849a9d897bbc7742024.jpg') center/cover no-repeat
+}
+@media(max-width:768px){
+  .login-container{
+    flex-direction:column;
+    height:auto;
+    margin-top:-25%;
+  }
+  .login-image{
+    display:none
+  }
+}
+
+
+
+
+
+

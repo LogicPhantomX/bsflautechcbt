@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BSF LAUTECH CBT (A computer based test/exam platform created for the students)">
+  <meta name="keywords" content="BSF, BSF LAUTECH, bsf lautech, BSF LAUTECH CBT, bsf lautech CBT, BSF lautech CBT, admin, admin dashboard">
+  <meta name="author" content="LogicPhantomX">
+  <title>Admin Dashboard | BSF LAUTECH CBT</title>
+  <link rel="stylesheet" href="css/style-admin.css">
+  <link rel="icon" type="image/png" href="1000297344-removebg-preview.png">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">BSF LAUTECH Admin</div>
+    <ul>
+      <li><a href="adminDashboard.html" class="active">Dashboard</a></li>
+      <li><a href="results-admin.html">Results</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="admin-container">
+    <div class="admin-content">
+      <h2>Welcome, Admin</h2>
+      <p>Manage your CBT system</p><br>
+
+      <section class="card">
+        <h3>Create Course</h3>
+        <div class="row">
+          <input id="courseName" placeholder="Course Name (e.g., Mathematics)"/>
+          <input id="duration" type="number" placeholder="Duration (mins)" value="60"/>
+          <input id="numQuestions" type="number" placeholder="No. of Questions" value="10"/>
+        </div>
+        <div class="row">
+          <label><input id="isOpen" type="checkbox" checked/> Open for Exam</label>
+        </div>
+        <button id="createCourse">Create Course</button>
+      </section>
+
+      <section class="card">
+        <h3>Courses</h3>
+        <div id="courseList"></div>
+      </section>
+
+      <section class="card">
+        <h3>Add Question</h3>
+        <div class="row">
+          <input id="qCourse" placeholder="Course"required/>
+          <input id="topic" placeholder="Topic"/>
+        </div>
+        <input id="question" placeholder="Question text"required/>
+        <div class="row">
+          <input class="opt" placeholder="Option 1" required/>
+          <input class="opt" placeholder="Option 2" required/>
+          <input class="opt" placeholder="Option 3" required/>
+          <input class="opt" placeholder="Option 4" required/> 
+        </div>
+        <input id="answerIndex" type="number" min="1" max="4" value="0" placeholder="Correct option index (1-4)" required/>
+        <button id="addQuestion">Add Question</button>
+      </section>
+
+      <section class="card">
+        <h3>List Questions (by Course)</h3>
+        <div class="row">
+          <input id="listCourse" placeholder="Course"/>
+          <button id="listBtn">Load</button>
+        </div>
+        <div id="questionList"></div>
+      </section>
+    </div>
+
+    <div class="admin-image"></div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!token || !user || user.role !== 'admin') location.href = 'index.html';
+
+    document.getElementById('logout').onclick = () => { localStorage.clear(); location.href='login.html'; };
+
+    async function fetchAdmin(path, options={}) {
+      const res = await fetch(path, {
+        ...options,
+        headers: { 'Content-Type':'application/json', Authorization:`Bearer ${token}` }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Request failed');
+      return data;
+    }
+
+    async function loadCourses() {
+      try {
+        const list = await fetchAdmin('/api/admin/courses');
+        const wrap = document.getElementById('courseList');
+        wrap.innerHTML = '';
+        list.forEach(c => {
+          const d = document.createElement('div');
+          d.className = 'course-row';
+          d.innerHTML = `
+            <div><strong>${c.name}</strong> • ${c.durationMinutes} mins • ${c.numQuestions} qns • ${c.isOpen ? 'OPEN' : 'CLOSED'}</div>
+            <div>
+              <button data-id="${c.id}" class="toggle">${c.isOpen ? 'Close' : 'Open'}</button>
+              <button data-id="${c.id}" class="del danger">Delete</button>
+            </div>
+          `;
+          wrap.appendChild(d);
+        });
+
+        wrap.querySelectorAll('.toggle').forEach(btn => {
+          btn.onclick = async () => {
+            const id = btn.getAttribute('data-id');
+            const list = await fetchAdmin('/api/admin/courses');
+            const course = list.find(x=>x.id===id);
+            await fetchAdmin(`/api/admin/courses/${id}`, {
+              method:'PATCH',
+              body: JSON.stringify({ isOpen: !course.isOpen })
+            });
+            loadCourses();
+          };
+        });
+
+        wrap.querySelectorAll('.del').forEach(btn => {
+          btn.onclick = async () => {
+            const id = btn.getAttribute('data-id');
+            if (!confirm('Delete this course?')) return;
+            await fetchAdmin(`/api/admin/courses/${id}`, { method:'DELETE' });
+            loadCourses();
+          };
+        });
+
+      } catch (e) {
+        alert(e.message);
+      }
+    }
+
+    document.getElementById('createCourse').onclick = async () => {
+      try {
+        const payload = {
+          name: document.getElementById('courseName').value.trim(),
+          isOpen: document.getElementById('isOpen').checked,
+          durationMinutes: Number(document.getElementById('duration').value),
+          numQuestions: Number(document.getElementById('numQuestions').value)
+        };
+        if (!payload.name) return alert('Course name required');
+        await fetchAdmin('/api/admin/courses', { method:'POST', body: JSON.stringify(payload) });
+        document.getElementById('courseName').value='';
+        loadCourses();
+      } catch (e) { alert(e.message); }
+    };
+
+    document.getElementById('addQuestion').onclick = async () => {
+      try {
+        const course = document.getElementById('qCourse').value.trim();
+        const topic = document.getElementById('topic').value.trim() || 'General';
+        const question = document.getElementById('question').value.trim();
+        const options = Array.from(document.querySelectorAll('.opt')).map(i=>i.value.trim()).filter(Boolean);
+        const answerIndex = Number(document.getElementById('answerIndex').value || 0);
+        if (!course || !question || options.length < 2) return alert('Fill course, question, 2+ options');
+        await fetchAdmin('/api/admin/questions', {
+          method:'POST',
+          body: JSON.stringify({ course, topic, question, options, answerIndex })
+        });
+        document.getElementById('question').value='';
+        document.querySelectorAll('.opt').forEach(i=>i.value='');
+        alert('Question added!');
+      } catch (e) { alert(e.message); }
+    };
+
+    document.getElementById('listBtn').onclick = async () => {
+      try {
+        const course = document.getElementById('listCourse').value.trim();
+        const list = await fetchAdmin(`/api/admin/questions?course=${encodeURIComponent(course)}`);
+        const wrap = document.getElementById('questionList');
+        wrap.innerHTML = '';
+        if (!list.length) { wrap.innerHTML = '<p>No questions found.</p>'; return; }
+        list.forEach(q => {
+          const item = document.createElement('div');
+          item.className = 'q-row';
+          item.innerHTML = `
+            <div class="q-text"><strong>${q.topic}</strong>: ${q.question}</div>
+            <div class="q-actions">
+              <button class="edit" data-id="${q.id}">Edit</button>
+              <button class="danger del" data-id="${q.id}">Delete</button>
+            </div>
+          `;
+          wrap.appendChild(item);
+        });
+
+        wrap.querySelectorAll('.del').forEach(btn => {
+          btn.onclick = async () => {
+            const id = btn.getAttribute('data-id');
+            const course = document.getElementById('listCourse').value.trim();
+            if (!confirm('Delete this question?')) return;
+            await fetchAdmin(`/api/admin/questions/${encodeURIComponent(course)}/${id}`, { method:'DELETE' });
+            document.getElementById('listBtn').click();
+          };
+        });
+
+        wrap.querySelectorAll('.edit').forEach(btn => {
+          btn.onclick = async () => {
+            const id = btn.getAttribute('data-id');
+            const course = document.getElementById('listCourse').value.trim();
+            const newQ = prompt('New question text (leave empty to skip):');
+            if (newQ === null) return;
+            await fetchAdmin(`/api/admin/questions/${encodeURIComponent(course)}/${id}`, {
+              method:'PATCH',
+              body: JSON.stringify({ question: newQ })
+            });
+            document.getElementById('listBtn').click();
+          };
+        });
+      } catch (e) { alert(e.message); }
+    };
+
+    loadCourses();
+  </script>
+</body>
+</html>
+

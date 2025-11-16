@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BSF LAUTECH CBT (A computer based test/exam platform created for the students)">
+  <meta name="keywords" content="BSF, BSF LAUTECH, bsf lautech, BSF LAUTECH CBT, bsf lautech CBT, BSF lautech CBT, student, student result, result">
+  <meta name="author" content="LogicPhantomX">
+  <title>My Results | BSF LAUTECH CBT</title>
+  <link rel="stylesheet" href="css/style-results.css">
+  <link rel="icon" type="image/png" href="1000297344-removebg-preview.png">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">BSF LAUTECH CBT</div>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="results.html" class="active">Results</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="results-container">
+    <h2>📊 Your Results</h2>
+    <div id="resultsList" class="results-list"></div>
+  </main>
+
+<script>
+const token = localStorage.getItem('token');
+const user = JSON.parse(localStorage.getItem('user') || 'null');
+if (!token || !user) location.href = 'login.html';
+
+document.getElementById('logout').onclick = () => {
+  localStorage.clear();
+  location.href = 'login.html';
+};
+
+async function loadResults() {
+  try {
+    const res = await fetch('/api/exam/results', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    const results = await res.json();
+
+    const wrap = document.getElementById('resultsList');
+    wrap.innerHTML = '';
+
+    if (!Array.isArray(results) || !results.length) {
+      wrap.innerHTML = `<p>No results yet.</p>`;
+      return;
+    }
+
+    // Sort by newest first
+    results.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+    results.forEach((attempt, index) => {
+      const div = document.createElement('div');
+      div.className = 'result-card';
+
+      const summary = document.createElement('div');
+      summary.className = 'result-summary';
+      summary.innerHTML = `
+        <div class="result-header">
+          <h3>${attempt.course}</h3>
+          <p>Score: ${attempt.score}/${attempt.total} (${attempt.percentage.toFixed(1)}%)</p>
+          <small>${new Date(attempt.date).toLocaleString()}</small>
+        </div>
+        <button class="toggle-btn">Show Details ▼</button>
+      `;
+
+      const details = document.createElement('div');
+      details.className = 'result-details';
+      details.style.display = 'none'; // hidden initially
+
+      attempt.breakdown.forEach((q, i) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        const isCorrect = q.correct ? '✅' : '❌';
+        const yourAnswer = q.yourChoiceText || 'No answer';
+        const correctAnswer = q.correctText || 'N/A';
+        card.innerHTML = `
+          <p><strong>Q${i + 1}.</strong> ${q.question}</p>
+          <p><em>Your answer:</em> ${yourAnswer} ${isCorrect}</p>
+          <p><em>Correct answer:</em> ${correctAnswer}</p>
+          <hr>
+        `;
+        details.appendChild(card);
+      });
+
+      // Toggle dropdown
+      summary.querySelector('.toggle-btn').onclick = () => {
+        const visible = details.style.display === 'block';
+        details.style.display = visible ? 'none' : 'block';
+        summary.querySelector('.toggle-btn').textContent = visible ? 'Show Details ▼' : 'Hide Details ▲';
+      };
+
+      div.appendChild(summary);
+      div.appendChild(details);
+      wrap.appendChild(div);
+    });
+
+  } catch (e) {
+    console.error(e);
+    document.getElementById('resultsList').innerHTML = '<p>Error loading results.</p>';
+  }
+}
+
+loadResults();
+</script>
+</body>
+</html>
+

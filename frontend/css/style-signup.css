@@ -1,0 +1,18 @@
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif}
+body{height:100vh;display:flex;justify-content:center;align-items:center; overflow: hidden;background:#f4fdf6}
+.signup-container{display:flex;width:90%;max-width:1000px;height:600px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1)}
+.signup-form{flex:1;padding:3rem;display:flex;flex-direction:column;justify-content:center}
+.signup-form h2{color:#006400;margin-bottom:1.5rem}
+.signup-form input,.signup-form select{margin-bottom:1rem;padding:.8rem;border:1px solid #ccc;border-radius:6px;font-size:1rem}
+.signup-form button{padding:.8rem;background:#006400;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:.3s}
+.signup-form button:hover{background:#008000}
+.signup-form p{margin-top:1rem}
+.signup-form a{color:#006400;text-decoration:none;font-weight:600}
+.signup-image{flex:1;background:url('images/1000296762-removebg-preview.png') center/cover no-repeat}
+@media(max-width:768px){.signup-container{flex-direction:column;height:auto;margin-top: -20%;.signup-image{display:none}}
+
+
+
+
+
+

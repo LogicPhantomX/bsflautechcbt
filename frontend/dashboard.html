@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BSF LAUTECH CBT (A computer based test/exam platform created for the students)">
+  <meta name="keywords" content="BSF, BSF LAUTECH, bsf lautech, BSF LAUTECH CBT, bsf lautech CBT, BSF lautech CBT, student, student dashboard">
+  <meta name="author" content="LogicPhantomX">
+  <title>Student Dashboard | BSF LAUTECH CBT</title>
+  <link rel="stylesheet" href="css/style-dashboard.css">
+  <link rel="icon" type="image/png" href="1000297344-removebg-preview.png">
+
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">BSF LAUTECH CBT</div>
+    <ul>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="results.html">My Results</a></li>
+      <li><a href="#" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="dashboard-container">
+    <div class="dashboard-image"></div>
+    <div class="dashboard-content">
+      <h2 id="greet">Welcome</h2>
+      <p>Select an open course to start the exam:</p><br>
+      <div id="courses" class="course-list"></div>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const user = JSON.parse(localStorage.getItem('user') || 'null');
+    if (!token || !user || user.role !== 'student') location.href = 'index.html';
+    document.getElementById('greet').textContent = `Welcome, ${user.name}`;
+
+    document.getElementById('logout').onclick = () => {
+      localStorage.clear();
+      location.href = 'login.html';
+    }
+
+    async function loadCourses() {
+      const res = await fetch('/api/exam/courses', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const data = await res.json();
+      const wrap = document.getElementById('courses');
+      wrap.innerHTML = '';
+      if (!data.length) {
+        wrap.innerHTML = '<p>No open courses yet. Check back later.</p>';
+        return;
+      }
+      data.forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = 'course-btn';
+        btn.textContent = `${c.name} • ${c.durationMinutes} mins`;
+        btn.onclick = () => location.href = `exam.html?course=${encodeURIComponent(c.name)}`;
+        wrap.appendChild(btn);
+      });
+    }
+    loadCourses();
+  </script>
+</body>
+</html>
+
